@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    binding.pry
     @user = User.new(user_params)
 
     if @user.save
@@ -46,6 +47,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.fetch(:user, {})
+      # params.fetch(:user, {})
+      params.require(:user).permit(:username, :password, :email)
     end
 end
