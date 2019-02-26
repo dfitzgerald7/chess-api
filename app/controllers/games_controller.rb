@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :authenticate_user
+  #before_action :authenticate_user
   before_action :set_game, only: [:show, :update, :destroy]
 
   # GET /games
@@ -47,6 +47,6 @@ class GamesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def game_params
-      params.require(:game).permit(:user_id)
+      params.require(:game).permit(:user_id, :fen, :move_count)
     end
 end
