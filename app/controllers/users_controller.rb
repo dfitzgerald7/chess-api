@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:create]
+  before_action :authenticate_user, except: [:create]
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
@@ -15,6 +17,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    binding.pry
     @user = User.new(user_params)
 
     if @user.save
